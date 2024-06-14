@@ -1,3 +1,6 @@
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 fun main() {
     val LojaMalvaLopes = LojaDeRoupa("AzeméisSport")
 
@@ -40,22 +43,31 @@ fun main() {
         email = "joaosoulindo@gmail.com",
         telefone = "1234567890"
     )
-// Simular uma compra de sapatilhas Nike pelo cliente
-    /*
-    desconto1
-    desconto2
 
-    descontos =
-    val precoSapatilhasComDesconto = cliente1.aplicarDescontoAoProduto(descontos, sapatilhasNike)
+    // Simular uma compra de sapatilhas Nike pelo cliente
+    // Definir datas de validade para os descontos
+    val dataInicioDesconto = LocalDate.of(2024, 6, 13)
+    val dataFimDesconto = LocalDate.of(2024, 6, 15)
+
+    // Criar um desconto fixo de R$ 20 válido durante abril de 2024
+    val descontos = Desconto(
+        TipoDesconto.FIXO,
+        20.0,
+        itensVendidos,
+        dataInicioDesconto,
+        dataFimDesconto
+    )
+    val precoSapatilhasComDesconto = cliente1.aplicarDescontoAoProduto(sapatilhasNike, descontos)
+        //descontos?.let { cliente1.aplicarDescontoAoProduto(it, sapatilhasNike)}
 
     println("Preço original das Sapatilhas Nike: R$${sapatilhasNike.preco}")
     println("Preço com desconto aplicado: R$$precoSapatilhasComDesconto")
 
     // Simular uma compra de camisola técnica pelo cliente
-    val precoCamisolaComDesconto = cliente1.aplicarDescontoAoProduto(descontos, camisola1)
-     */
+    val precoCamisolaComDesconto = ( cliente1.aplicarDescontoAoProduto(camisola1, descontos))
+
     println("\nPreço original da Camisola Técnica: R$${camisola1.preco}")
-    // println("Preço com desconto aplicado: R$$precoCamisolaComDesconto")
+    println("Preço com desconto aplicado: R$$precoCamisolaComDesconto")
     cliente1.adicionarCompra(venda)
 
     // Exibir histórico de compras do cliente

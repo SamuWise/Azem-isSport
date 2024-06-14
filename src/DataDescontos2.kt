@@ -9,8 +9,8 @@ fun main() {
     val produtosElegiveisDesconto = listOf(sapatilhasNike, camisola1)
 
     // Definir datas de validade para os descontos
-    val dataInicioDesconto = LocalDate.of(2024, 4, 1)
-    val dataFimDesconto = LocalDate.of(2024, 4, 30)
+    val dataInicioDesconto = LocalDate.of(2024, 6, 13)
+    val dataFimDesconto = LocalDate.of(2024, 6, 15)
 
     // Criar um desconto fixo de R$ 20 válido durante abril de 2024
     val descontoFixo = Desconto(
@@ -22,16 +22,16 @@ fun main() {
     )
 
     // Aplicar o desconto às sapatilhas Nike (dentro do período de validade)
-    val dataCompra = LocalDate.of(2024, 4, 15)
+    val dataCompra = LocalDate.of(2024, 6, 13)
     val precoOriginalSapatilhas = sapatilhasNike.preco
-    val precoComDesconto = descontoFixo.aplicarDesconto(precoOriginalSapatilhas, dataCompra)
+    val precoComDesconto = descontoFixo.aplicarDesconto(precoOriginalSapatilhas)
 
     println("Preço original das Sapatilhas Nike: R$$precoOriginalSapatilhas")
     println("Preço com desconto aplicado: R$$precoComDesconto")
 
     // Tentar aplicar o mesmo desconto à camisola técnica (fora do período de validade)
     val precoOriginalCamisola = camisola1.preco
-    val precoComDescontoCamisola = descontoFixo.aplicarDesconto(precoOriginalCamisola, LocalDate.of(2024, 5, 1))
+    val precoComDescontoCamisola = descontoFixo.aplicarDesconto(precoOriginalCamisola)
 
     println("\nPreço original da Camisola Técnica: R$$precoOriginalCamisola")
     println("Preço com desconto aplicado (fora do período de validade): R$$precoComDescontoCamisola")

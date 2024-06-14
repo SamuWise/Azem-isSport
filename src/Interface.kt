@@ -1,7 +1,7 @@
 import java.time.LocalDate
 
 fun main() {
-    val LojaMalvaLopes = LojaDeRoupa("AzeméisSporto")
+    val LojaMalvaLopes = LojaDeRoupa("AzeméisSport")
     val clientes = mutableListOf<Cliente>()
 
     // Adicionando alguns produtos ao estoque
@@ -27,7 +27,7 @@ fun main() {
     val dataInicioDesconto = LocalDate.of(2024, 4, 1)
     val dataFimDesconto = LocalDate.of(2024, 4, 30)
     val descontoFixo = Desconto(
-        Desconto.TipoDesconto.FIXO,
+        TipoDesconto.FIXO,
         20.0,
         listOf(sapatilhasNike, camisola1),
         dataInicioDesconto,
@@ -96,7 +96,7 @@ fun realizarCompra(loja: LojaDeRoupa, clientes: List<Cliente>) {
     loja.listarProdutos()
     print("Digite o nome do produto para comprar: ")
     val nomeProduto = readLine().orEmpty()
-    val produto = loja.produtos.find { it.nome == nomeProduto }
+    val produto = loja.listarProdutos().keys.filter { it.nome == nomeProduto } [0]
 
     if (produto == null) {
         println("Produto não encontrado.")

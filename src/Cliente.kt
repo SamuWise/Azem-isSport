@@ -1,32 +1,27 @@
+import java.time.LocalDate
+
 class Cliente(
     val nome: String,
     val endereco: String,
     val email: String,
     val telefone: String,
-    val historicoCompras: MutableList<Venda> = mutableListOf()
+    val historicoCompras: MutableList<Venda> = mutableListOf(),
+    val descontosDisponiveis: MutableList<Desconto> = mutableListOf()
 ) {
     fun adicionarCompra(venda: Venda) {
         historicoCompras.add(venda)
     }
 
+    fun aplicarDescontoAoProduto(produto: Produto): Double {
+        val descontoAplicavel = descontosDisponiveis.find { it.produtosElegiveis.contains(produto) && LocalDate.now() in it.dataInicio..it.dataFim }
+        return descontoAplicavel?.aplicarDesconto(produto.preco) ?: produto.preco
+    }
+
+    fun aplicarDescontoAoProduto(produto: Produto, desconto: Desconto): Double {
+        return desconto.aplicarDesconto(produto.preco)
+    }
     fun exibirHistoricoCompras() {
         println("Histórico de Compras de $nome:")
-        historicoCompras.forEachIndexed { index, venda ->
-            println("Compra ${index + 1}:")
-            println(venda.exibirDetalhes())
-        }
-    }
-    fun aplicarDescontoAoProduto(descontosDisponiveis: List<Desconto>,produto: Produto): Double {
-        // Verifica se o cliente tem descontos aplicáveis ao produto
-        val descontoAplicavel: Desconto = descontosDisponiveis.find { it.produtosElegiveis.contains(produto) }
-
-        // Se encontrar um desconto aplicável, calcula o novo preço com desconto
-        return if (descontoAplicavel != null) {
-            val precoOriginal = produto.preco
-            descontoAplicavel.aplicarDesconto(precoOriginal, LocalDate.now())
-        } else {
-            // Se não houver desconto aplicável, retorna o preço original
-            return produto.preco
-        }
+        historicoCompras.forEach { println(it.exibirDetalhes()) }
     }
 }

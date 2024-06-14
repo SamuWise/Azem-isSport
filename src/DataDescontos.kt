@@ -8,7 +8,8 @@ class Desconto(
     val dataFim: LocalDate
 ) {
 
-    fun aplicarDesconto(precoOriginal: Double, dataCompra: LocalDate): Double {
+    fun aplicarDesconto(precoOriginal: Double): Double {
+        val dataCompra = LocalDate.now()  // Assume que a data da compra é a data atual
         if (dataCompra !in dataInicio..dataFim) {
             // Fora do período de validade do desconto
             println("Este desconto não é mais válido para esta compra.")
@@ -20,4 +21,8 @@ class Desconto(
             TipoDesconto.PORCENTAGEM -> precoOriginal * (1 - (valor / 100))
         }
     }
+}
+
+enum class TipoDesconto {
+    FIXO, PORCENTAGEM
 }

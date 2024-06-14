@@ -1,10 +1,11 @@
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class Venda(
-    val itensVendidos: List<Produto>,
-    val quantidades: List<Int>,
-    val dataVenda: LocalDateTime = LocalDateTime.now()
+	val itensVendidos: List<Produto>,
+	val quantidades: List<Int>,
+	val dataVenda: LocalDate = LocalDate.now()
 ) {
     init {
         require(itensVendidos.size == quantidades.size) { "O número de itens vendidos deve corresponder ao número de quantidades" }
@@ -21,7 +22,7 @@ class Venda(
     }
 
     fun exibirDetalhes(): String {
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val dataFormatada = dataVenda.format(formatter)
 
         val sb = StringBuilder()

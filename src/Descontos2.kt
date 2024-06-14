@@ -10,7 +10,7 @@ fun main() {
     val impermeaveis = Impermeaveis("Zara", 25.95, "Tecido", 15, "Verde")
 
     // Criar uma lista de produtos elegíveis para desconto
-    val produtosElegiveisDesconto = listOf(sapatilhasNike, bonesAdidas,)
+    val produtosElegiveisDesconto = listOf(sapatilhasNike, bonesAdidas)
 
     // Criar um desconto fixo de R$ 20 para produtos elegíveis
     val descontoFixo = Desconto(TipoDesconto.FIXO, 20.0, produtosElegiveisDesconto)
@@ -31,4 +31,10 @@ fun main() {
 
     println("Preço original Bonés: R$$precoOriginalbonesAdidas")
     println("Preço com desconto aplicado: R$$precoComDescontoPorcentagem")
+}
+
+fun Desconto(tipo: TipoDesconto, valor: Double, produtosElegiveis: List<Produto>): Desconto {
+    "FIXO"; 20.0; "sapatilhasNike";
+    "PORCENTAGEM"; 37.0; "bonesAdidas"
+    return TODO("Provide the return value")
 }

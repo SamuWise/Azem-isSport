@@ -9,11 +9,11 @@ class LojaDeRoupa (val nome: String) {
         }
     }
 
-    fun listarProdutos() {
+    fun listarProdutos(): MutableMap <Produto,Int> {
         println("Produtos disponíveis na loja $nome:")
         estoque.forEach { (produto) ->
             println("${produto.nome} - Preço: ${produto.preco}")
         }
+        return estoque
     }
-    // Implementar outros métodos como removerProduto, atualizarPreco...
 }
